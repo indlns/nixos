@@ -117,6 +117,8 @@
   vulkan-loader
   vulkan-tools
   mesa
+  age
+  sops
   ];
 
   fonts.packages = with pkgs; [

@@ -6,6 +6,8 @@ imports =
     ./nfs.nix
     ./cleanup.nix
     ./swap.nix
+    ./sops.nix
+    ./secrets.nix
     ./llama.nix
     ];
 }
