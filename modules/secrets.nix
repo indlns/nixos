@@ -3,7 +3,7 @@
 {
   sops.secrets.cloudflare-token = {
   format = "yaml";
-  sopsFile = ./secrets/common.yaml;
+  sopsFile = "${inputs.self}/secrets/common.yaml";
   key = "cloudflare.token";
 };
 }
