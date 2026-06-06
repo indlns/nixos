@@ -1,6 +1,6 @@
 { config, pkgs, ... }: {
 	imports = [
-    ./modules/bundle.nix
+    ../modules/user/bundle.nix
     ];
 
 	home.shell.enableZshIntegration = true;
@@ -22,7 +22,7 @@
 	};
 
 	home.sessionVariables = {
-  		EDITOR = "nano";
-  		VISUAL = "nano";
+		EDITOR = "nano";
+		VISUAL = "nano";
 	};
 }

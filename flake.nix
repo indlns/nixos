@@ -16,20 +16,20 @@
         let 
             system = "x86_64-linux";
         in { 
-        nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
+        nixosConfigurations.server = nixpkgs.lib.nixosSystem {
             inherit system;
             
             specialArgs = { inherit inputs; };
 
             modules = [ 
-            ./configuration.nix 
+            ./hosts/server/configuration.nix 
             sops-nix.nixosModules.sops 
             ];
         };
         homeConfigurations.indlns = home-manager.lib.homeManagerConfiguration {
             pkgs = nixpkgs.legacyPackages.${system};
             modules = [ 
-            ./home-manager/home.nix
+            ./home/indlns.nix
             ];
         };
     };
