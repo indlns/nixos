@@ -54,8 +54,10 @@
 ## ⚙️ Сборка
 
 ## Клонируем репозиторий
+```bash
 git clone https://app.git.indlns.ru/nixos/nixos.git
 cd nixos
+```
 
 ### NixOS
 ```bash
