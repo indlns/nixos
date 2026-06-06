@@ -16,7 +16,7 @@
         let 
             system = "x86_64-linux";
         in { 
-        nixosConfigurations.server = nixpkgs.lib.nixosSystem {
+        nixosConfigurations.nixos = nixpkgs.lib.nixosSystem {
             inherit system;
             
             specialArgs = { inherit inputs; };
