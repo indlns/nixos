@@ -8,8 +8,6 @@
     ./core/swap.nix 
     ./core/users.nix
 
-    ./hardware/igpu.nix
-
     ./maintenance/cleanup.nix
     ./maintenance/cron.nix
 
@@ -19,14 +17,11 @@
     ./security/sops.nix
     ./security/ssh.nix
 
-    ./virtualization/docker.nix
+    ./virtualization/docker2.nix
 
-    ./services/ai/llama.nix
-    # ./services/ai/ollama.nix
     ./services/audio/pipewire.nix
     ./services/desktop/desktop.nix
     ./services/desktop/firefox.nix
     ./services/desktop/input.nix
-    ./services/network/nfs.nix
     ];
 }

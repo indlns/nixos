@@ -11,6 +11,10 @@
       ../../modules/system/default.nix
     ];
 
+  # Bootloader.
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
   # Enable Flake
   nix.settings.experimental-features = ["nix-command" "flakes"];
 
@@ -57,6 +61,11 @@
   #   enable = true;
   #   enableSSHSupport = true;
   # };
+
+  networking.firewall.allowedTCPPorts = [ 80 443  32400 9100 ];
+  networking.firewall.allowedUDPPorts = [ 42873 ];
+  # Or disable the firewall altogether.
+  networking.firewall.enable = false;
 
   # List services that you want to enable:
 
