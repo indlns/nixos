@@ -96,7 +96,7 @@ SOPS secrets:
 ---
 
 ## 🖥 Hosts
-- hosts/server — основная система
+- hosts/nixos — основная система
 
 ---
 
