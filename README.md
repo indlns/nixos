@@ -15,9 +15,9 @@
 ├── flake.nix
 ├── flake.lock
 ├── hosts/
-│   |── nixos/
-│   |    ├── configuration.nix
-│   |    └── hardware-configuration.nix
+│   │── nixos/
+│   │    ├── configuration.nix
+│   │    └── hardware-configuration.nix
 │   │
 │   └── nixos-net/
 │       ├── configuration.nix
@@ -39,6 +39,7 @@
 │   │   │   └── network/
 │   │   ├── security/
 │   │   └── maintenance/
+│   │   └── default.nix
 │   │
 │   └── user/
 │       ├── cli/
@@ -52,14 +53,18 @@
 
 ## ⚙️ Сборка
 
+## Клонируем репозиторий
+git clone https://app.git.indlns.ru/nixos/nixos.git
+cd nixos
+
 ### NixOS
 ```bash
-sudo nixos-rebuild switch --flake /home/indlns/nixos#server
+sudo nixos-rebuild switch --flake .#nixos
 ```
 
-### Home Manager
+### NixOS-net
 ```bash
-home-manager switch --flake /home/indlns/nixos#indlns
+sudo nixos-rebuild switch --flake .#nixos-net
 ```
 
 ---
@@ -97,16 +102,3 @@ SOPS secrets:
 - модульность
 - разделение system/home
 - масштабируемость multi-host
-
-
-# 🚀 Installation
-
-## Клонируем репозиторий с flake
-git clone https://app.git.indlns.ru/infrastructure/nixos
-cd nixos
-
-## Собираем и переключаем систему
-sudo nixos-rebuild switch --flake .#nixos
-
-## Собираем Home Manager
-home-manager switch --flake .#indlns
