@@ -1,6 +1,6 @@
 { pkgs, ... }:
+
 {
-    #programs.zsh.loginShell = true; 
     programs.zsh = {
     enable = true;                      # включаем Zsh
     enableCompletion = true;            # автодополнение команд
@@ -9,13 +9,11 @@
     oh-my-zsh.enable = true;
     oh-my-zsh.plugins = [ "git" "sudo" "extract" ]; # встроенные плагины Oh My Zsh
 
-    plugins = [
-    {
+    plugins = [{
     name = "powerlevel10k";
     src = pkgs.zsh-powerlevel10k;
     file = "share/zsh-powerlevel10k/powerlevel10k.zsh-theme";
-    }
-    ];
+    }];
 
     initContent = ''
     # Загружаем тему

@@ -1,6 +1,5 @@
 {
-imports =
-    [
+    imports = [
     ./core/boot.nix
     ./core/input.nix
     ./core/locale.nix
@@ -22,7 +21,7 @@ imports =
     ./security/ssh.nix
 
     ./virtualization/docker.nix
-    
+
     ./services/ai/llama.nix
     # ./services/ai/ollama.nix
     ./services/audio/pipewire.nix

@@ -1,11 +1,11 @@
 { config, pkgs, ... }:
 
 {
-systemd.services.llama-cpp = {
-  serviceConfig = {
-    WorkingDirectory = "/var/lib/llama-cpp";
-    Restart = "always";
-  };
+  systemd.services.llama-cpp = {
+    serviceConfig = {
+      WorkingDirectory = "/var/lib/llama-cpp";
+      Restart = "always";
+    };
 
   script = ''
     exec ${pkgs.llama-cpp-vulkan}/bin/llama-server \
