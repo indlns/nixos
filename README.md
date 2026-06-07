@@ -19,7 +19,7 @@
 │   │    ├── configuration.nix
 │   │    └── hardware-configuration.nix
 │   │
-│   └── nixos-net/
+│   └── nixos-infra/
 │       ├── configuration.nix
 │       └── hardware-configuration.nix
 │
@@ -64,9 +64,9 @@ cd nixos
 sudo nixos-rebuild switch --flake .#nixos
 ```
 
-### NixOS-net
+### NixOS-infra
 ```bash
-sudo nixos-rebuild switch --flake .#nixos-net
+sudo nixos-rebuild switch --flake .#nixos-infra
 ```
 
 ---
