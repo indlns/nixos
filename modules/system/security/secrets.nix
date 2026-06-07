@@ -7,8 +7,8 @@
     key = "cloudflare.token";
   };
 
-  sops.secrets.llama-token = {
-    sopsFile = ./common.yaml;
+  sops.secrets.llama-api-key = {
+    sopsFile = ../../../secrets/common.yaml;
     key = "api_tokens.llama";
   };
 }
