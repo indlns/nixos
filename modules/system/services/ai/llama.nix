@@ -7,6 +7,10 @@
       Restart = "always";
     };
 
+  environment = {
+    LLAMA_API_TOKEN = config.sops.secrets.llama-token.path;
+  };
+
   script = ''
     exec ${pkgs.llama-cpp-vulkan}/bin/llama-server \
       --host 0.0.0.0 \
