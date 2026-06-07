@@ -4,12 +4,15 @@
     hardware.graphics = {
         enable = true;
         extraPackages = with pkgs; [
-        intel-media-driver
+        intel-media-driver   # VAAPI (iHD)
+        vpl-gpu-rt           # Quick Sync / oneVPL
+        intel-compute-runtime # OpenCL (опционально)
         ];
     };
 
     environment.sessionVariables = {
         LIBVA_DRIVER_NAME = "iHD";
-        VDPAU_DRIVER = "va_gl";
     };
+
+    hardware.enableRedistributableFirmware = true;
 }

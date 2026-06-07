@@ -14,6 +14,9 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelParams = [
+    "i915.enable_guc=3"
+  ];
 
   # Enable Flake
   nix.settings.experimental-features = ["nix-command" "flakes"];

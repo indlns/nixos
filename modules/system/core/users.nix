@@ -4,7 +4,7 @@
   users.users.indlns = {
     isNormalUser = true;
     description = "Evgenij";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "docker" "video" "render" ];
     packages = with pkgs; [];
     shell = pkgs.zsh;
     openssh.authorizedKeys.keys = [
