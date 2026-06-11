@@ -7,7 +7,8 @@
     ./core/shell.nix
     ./core/swap.nix 
     ./core/users.nix
-
+    
+    ./hardware/graphics.nix
     ./hardware/igpu.nix
 
     ./maintenance/cleanup.nix

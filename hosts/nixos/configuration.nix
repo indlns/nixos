@@ -16,6 +16,7 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.kernelParams = [
     "i915.enable_guc=3"
+    # "nvidia-drm.modeset=1"
   ];
 
   # Enable Flake
@@ -39,6 +40,8 @@
   libva-utils
   vulkan-loader
   vulkan-tools
+  cudatoolkit
+  nvtop
   mesa
   age
   sops

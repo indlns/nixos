@@ -2,7 +2,6 @@
 
 {
     hardware.graphics = {
-        enable = true;
         extraPackages = with pkgs; [
         intel-media-driver   # VAAPI (iHD)
         vpl-gpu-rt           # Quick Sync / oneVPL
