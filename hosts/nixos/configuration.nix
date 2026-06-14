@@ -41,7 +41,7 @@
   vulkan-loader
   vulkan-tools
   cudatoolkit
-  nvtop
+  # nvtopPackages.nvidia
   mesa
   age
   sops
