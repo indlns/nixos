@@ -5,7 +5,7 @@
 
   nix.gc = {
     automatic = true;
-    dates = "weakly";
+    dates = "weekly";
     options = "--delete-older-than 30d";
   };
 }
