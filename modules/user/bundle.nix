@@ -3,7 +3,7 @@
     ./cli/git.nix
     ./cli/lf.nix
     ./cli/opencode.nix
-    ./cli/cloude-code.nix
+    ./cli/claude-code.nix
     ./shell/bash.nix
     ./shell/zsh.nix
     ];
