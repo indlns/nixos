@@ -15,7 +15,7 @@
 ├── flake.nix
 ├── flake.lock
 ├── hosts/
-│   │── nixos/
+│   │── ms-02/
 │   │    ├── configuration.nix
 │   │    └── hardware-configuration.nix
 │   │
@@ -59,9 +59,9 @@ git clone https://app.git.indlns.ru/nixos/nixos.git
 cd nixos
 ```
 
-### NixOS
+### MS-02
 ```bash
-sudo nixos-rebuild switch --flake .#nixos
+sudo nixos-rebuild switch --flake .#ms-02
 ```
 
 ### NixOS-infra
@@ -96,7 +96,7 @@ SOPS secrets:
 ---
 
 ## 🖥 Hosts
-- hosts/nixos — основная система
+- hosts/ms-02 — основная система
 
 ---
 
