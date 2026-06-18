@@ -40,7 +40,7 @@
 
     in {
         nixosConfigurations = {
-        nixos = mkHost "nixos" ./hosts/nixos/configuration.nix;
+        ms-02 = mkHost "ms-02" ./hosts/ms-02/configuration.nix;
         nixos-infra = mkHost "nixos-infra" ./hosts/nixos-infra/configuration.nix;
         };
     };
