@@ -41,7 +41,7 @@
     in {
         nixosConfigurations = {
         ms-02 = mkHost "ms-02" ./hosts/ms-02/configuration.nix;
-        nixos-infra = mkHost "nixos-infra" ./hosts/nixos-infra/configuration.nix;
+        n10-nixos = mkHost "n10-nixos" ./hosts/n10-nixos/configuration.nix;
         };
     };
 }
