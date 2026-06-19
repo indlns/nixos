@@ -19,9 +19,16 @@
 │   │    ├── configuration.nix
 │   │    └── hardware-configuration.nix
 │   │
-│   └── n10-nixos/
-│       ├── configuration.nix
-│       └── hardware-configuration.nix
+│   │── n10-nixos/
+│   │    ├── configuration.nix
+│   │    └── hardware-configuration.nix
+│   │
+│   │── mac-mini/
+│   │   └── home.nix
+│   │
+│   └── macbook-pro/
+│       └── home.nix
+│
 │
 ├── home/
 │   └── indlns.nix
