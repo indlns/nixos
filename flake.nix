@@ -43,5 +43,16 @@
         ms-02 = mkHost "ms-02" ./hosts/ms-02/configuration.nix;
         n10-nixos = mkHost "n10-nixos" ./hosts/n10-nixos/configuration.nix;
         };
+
+        homeConfigurations = {
+        macbook-pro = home-manager.lib.homeManagerConfiguration {
+            pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+            modules = [ ./hosts/macbook-pro/home.nix ];
+        };
+        mac-mini = home-manager.lib.homeManagerConfiguration {
+            pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+            modules = [ ./hosts/mac-mini/home.nix ];
+        };
+        };
     };
 }
