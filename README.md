@@ -105,3 +105,42 @@ SOPS secrets:
 - модульность
 - разделение system/home
 - масштабируемость multi-host
+
+# Home Manager on macOS
+
+## 1. Install Nix on macOS
+
+```zsh
+sh <(curl -L https://nixos.org/nix/install)
+```
+## 2. Flakes 
+
+```zsh
+mkdir -p ~/.config/nix
+nano ~/.config/nix/nix.conf
+```
+- Add to nix.conf:
+
+```bash
+experimental-features = nix-command flakes
+```
+
+## 3. Clone Repo
+
+```zsh
+git clone https://app.git.indlns.ru/nixos/nixos.git
+```
+
+## 4. Run config
+
+### MacBook Pro
+```zsh
+nix run github:nix-community/home-manager -- switch --flake .#macbook-pro
+home-manager switch --flake .#macbook-pro
+```
+
+### Mac Mini
+```zsh
+nix run github:nix-community/home-manager -- switch --flake .#mac-mini
+home-manager switch --flake .#mac-mini
+```
