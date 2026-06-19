@@ -19,7 +19,7 @@
 │   │    ├── configuration.nix
 │   │    └── hardware-configuration.nix
 │   │
-│   └── nixos-infra/
+│   └── n10-nixos/
 │       ├── configuration.nix
 │       └── hardware-configuration.nix
 │
@@ -64,9 +64,9 @@ cd nixos
 sudo nixos-rebuild switch --flake .#ms-02
 ```
 
-### NixOS-infra
+### N10-NixOS
 ```bash
-sudo nixos-rebuild switch --flake .#nixos-infra
+sudo nixos-rebuild switch --flake .#n10-nixos
 ```
 
 ---
@@ -97,6 +97,7 @@ SOPS secrets:
 
 ## 🖥 Hosts
 - hosts/ms-02 — основная система
+- hosts/n10-nixos — виртуальная машина
 
 ---
 
