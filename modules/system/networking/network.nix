@@ -1,14 +1,14 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, hostName, ... }:
 
 {
-    networking.hostName = "nixos"; # Define your hostname.
-    # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-    # Configure network proxy if necessary
-    # networking.proxy.default = "http://user:password@proxy:port/";
-    # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-    # Enable networking
+    networking.hostName = hostName;
     networking.networkmanager.enable = true;
-    # Open ports in the firewall.
+
+    networking.firewall = {
+        allowedTCPPorts = [ 80 443 32400 ]
+        ++ lib.optionals (hostName == "ms-02") [ 9100 ]
+        ++ lib.optionals (hostName == "n10-nixos") [ 2375 ];
+        allowedUDPPorts = [ 42873 ];
+        enable = hostName != "ms-02";
+    };
 }
