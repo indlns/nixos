@@ -18,32 +18,8 @@
 
   services.qemuGuest.enable = true;
 
-  # Enable Flake
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  wget
-  nerdfetch
-  lsd
-  home-manager
-  ];
-
-  fonts.packages = with pkgs; [
-    jetbrains-mono
-    noto-fonts
-    noto-fonts-color-emoji
-    twemoji-color-font
-    font-awesome
-    powerline-fonts
-    powerline-symbols
-    nerd-fonts.fira-code
-    nerd-fonts.droid-sans-mono
-		fira-code-symbols
-  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.

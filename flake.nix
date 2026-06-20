@@ -21,7 +21,7 @@
         nixpkgs.lib.nixosSystem {
             inherit system;
 
-            specialArgs = { inherit inputs; };
+            specialArgs = { inherit inputs; hostName = name; };
 
             modules = [
             path
@@ -40,8 +40,8 @@
 
     in {
         nixosConfigurations = {
-        ms-02 = mkHost "ms-02" ./hosts/ms-02/configuration.nix;
-        n10-nixos = mkHost "n10-nixos" ./hosts/n10-nixos/configuration.nix;
+            ms-02 = mkHost "ms-02" ./hosts/ms-02/configuration.nix;
+            n10-nixos = mkHost "n10-nixos" ./hosts/n10-nixos/configuration.nix;
         };
 
         homeConfigurations = {

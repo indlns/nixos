@@ -14,61 +14,17 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernelParams = [
-    "i915.enable_guc=3"
-    # "nvidia-drm.modeset=1"
-  ];
+  boot.kernelParams = [ "i915.enable_guc=3" ];
 
-  # Enable Flake
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-
-  # Enable CUPS to print documents.
   services.printing.enable = true;
-  
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  
+
   environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  wget
-  home-manager
-  nerdfetch
-  lsd
-  intel-media-driver
-  intel-gpu-tools
-  libva
-  libva-utils
-  vulkan-loader
-  vulkan-tools
-  cudatoolkit
-  # nvtopPackages.nvidia
-  mesa
-  age
-  sops
+    intel-gpu-tools libva-utils
+    vulkan-loader vulkan-tools
+    cudatoolkit
   ];
 
-  fonts.packages = with pkgs; [
-    jetbrains-mono
-    noto-fonts
-    noto-fonts-color-emoji
-    twemoji-color-font
-    font-awesome
-    powerline-fonts
-    powerline-symbols
-    nerd-fonts.fira-code
-    nerd-fonts.droid-sans-mono
-		fira-code-symbols
-  ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  networking.firewall.allowedTCPPorts = [ 80 443  32400 9100 ];
+  networking.firewall.allowedTCPPorts = [ 80 443 32400 9100 ];
   networking.firewall.allowedUDPPorts = [ 42873 ];
   # Or disable the firewall altogether.
   networking.firewall.enable = false;
