@@ -17,7 +17,7 @@
       -t 16 \
       --threads-batch 16 \
       -c 16384 \
-      --flash-attn \
+      --flash-attn auto \
       --cont-batching \
   '';
 
