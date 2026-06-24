@@ -1,14 +1,16 @@
 { config, pkgs, ... }:
 
+let
+  ollama-cuda = pkgs.ollama.override { cudaSupport = true; };
+in
 {
     services.ollama = {
         enable = true;
-        # можно ограничить/настроить окружение
         host = "0.0.0.0";
-        port = 11434; # Optional: Default port
+        port = 11434;
+        package = ollama-cuda;
         environmentVariables = {
-            # OLLAMA_HOST = "0.0.0.0:11434";
-            OLLAMA_ORIGINS="*"; 
+            OLLAMA_ORIGINS="*";
             OLLAMA_HOST="0.0.0.0:11434";
             OLLAMA_NUM_PARALLEL = "2";
             OLLAMA_NUM_THREADS = "10";

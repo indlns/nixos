@@ -19,8 +19,10 @@
   services.printing.enable = true;
 
   environment.systemPackages = with pkgs; [
-    intel-gpu-tools libva-utils
-    vulkan-loader vulkan-tools
+    intel-gpu-tools 
+    libva-utils
+    vulkan-loader 
+    vulkan-tools
     cudatoolkit
   ];
 

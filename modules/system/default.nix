@@ -30,6 +30,7 @@
     # host-specific modules
     ++ lib.optional (hostName == "ms-02") ./hardware/graphics.nix
     ++ lib.optional (hostName == "ms-02") ./hardware/igpu.nix
+    ++ lib.optional (hostName == "ms-02") ./hardware/dgpu.nix
     ++ lib.optional (hostName == "ms-02") ./services/ai/llama.nix
     ++ lib.optional (hostName == "ms-02") ./services/network/nfs.nix
     ++ lib.optional (hostName == "n10-nixos" || hostName == "ms-02") ./virtualization/docker.nix;

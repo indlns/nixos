@@ -3,27 +3,25 @@
 {
     services.xserver.videoDrivers = [ "nvidia" ];
 
-    # NVIDIA DRIVER (HEADLESS SAFE)
     hardware.nvidia = {
         modesetting.enable = true;
-        # Ada Lovelace → open kernel modules (рекомендуется)
-        open = true;
-        nvidiaSettings = false; # GUI не нужен
+        open = false;
+        nvidiaSettings = false;
         package = config.boot.kernelPackages.nvidiaPackages.stable;
-        # powerManagement = {
-        # enable = true;
-        # finegrained = false;
-        # };
 
-        # ВАЖНО для headless стабильности
         nvidiaPersistenced = true;
     };
 
-    # # Чтобы GPU не "засыпал" как на desktop системах
-    # systemd.services.nvidia-persistenced = {
-    #     wantedBy = [ "multi-user.target" ];
-    #     serviceConfig = {
-    #     ExecStart = "${pkgs.nvidia_x11}/bin/nvidia-persistenced --verbose";
-    #     };
-    # };
+    # === Docker GPU passthrough ===
+    hardware.nvidia-container-toolkit.enable = true;
+
+    # === Доп. пакеты ===
+    environment.systemPackages = with pkgs; [
+        nvidia-docker
+    ];
+
+    boot.kernel.sysctl."vm.max_map_count" = "2147483642";
+
+    # CDI generator штатный отключаем (падает до загрузки драйвера)
+    systemd.services.nvidia-container-toolkit-cdi-generator.enable = true;
 }
