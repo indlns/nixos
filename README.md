@@ -92,18 +92,6 @@ nix run github:nix-community/home-manager -- switch --flake .#mac-mini
 home-manager switch --flake .#mac-mini
 ```
 
-### NixOS хосты
-
-#### MS-02
-```bash
-sudo nixos-rebuild switch --flake .#ms-02
-```
-
-#### N10-NixOS
-```bash
-sudo nixos-rebuild switch --flake .#n10-nixos
-```
-
 ---
 
 ## 🧠 Архитектура
