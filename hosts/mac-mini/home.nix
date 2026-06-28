@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ../../modules/user/default.nix
+    ../../modules/user/platform/macos/default.nix
   ];
 
   home.username = "indlns";

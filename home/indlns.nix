@@ -2,7 +2,7 @@
 
 {
 	imports = [
-    ../modules/user/bundle.nix
+    ../modules/user/platform/linux/default.nix
     ];
 
 	home.shell.enableZshIntegration = true;
