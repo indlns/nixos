@@ -1,21 +1,40 @@
 # Модуль `user/shell/bash`
 
-**Путь:** `modules/user/shell/bash.nix` 
-**Назначение:** Настройки bash‑shell.
+**Путь:** `modules/user/shell/bash.nix`
+**Назначение:** Пользовательская конфигурация Bash.
+**Используется хостами:** Linux (через platform/linux)
 
 ## Описание
-(текст описания модуля)
 
-## Опции
-| Параметр | Тип | По умолчанию | Описание |
-|----------|-----|--------------|-----------|
-| `dotfiles` | bool | true | Подключить пользовательские настройки из `$HOME/.bashrc.d`. |
-| `aliases` | list of strings | [] | Глобальные алиасы, добавляемые в конце `.bashrc`. |
-| `pathAdd` | list of paths | [] | Путь к внешним скриптам.|
+Настраивает Bash: алиас `rebuild` для быстрого обновления системы, fastfetch при SSH.
 
-### Пример использования
+## Настройки
+
+```nix
+programs.bash = {
+  enable = true;
+  shellAliases = {
+    rebuild = "sudo nixos-rebuild switch";
+  };
+
+  initExtra = ''
+    if [[ -n "$SSH_CONNECTION" ]]; then
+      fastfetch
+    fi
+  '';
+};
 ```
-{ pkgs, ... }: {
-  imports = [ ./user/shell/bash.nix ];
-}
-```
+
+## Экспортируемые опции Home-Manager
+
+| Опция | Тип | По умолчанию | Описание |
+|-------|-----|-------------|-----------|
+| `programs.bash.enable` | bool | `true` | Включает Bash |
+| `programs.bash.shellAliases` | attrset | `{ rebuild = "sudo nixos-rebuild switch"; }` | Алиасы оболочки |
+| `programs.bash.initExtra` | string | fastfetch при SSH | Дополнительный код при старте |
+
+## Алиасы
+
+| Алиас | Команда | Описание |
+|-------|---------|----------|
+| `rebuild` | `sudo nixos-rebuild switch` | Быстрое обновление системы |

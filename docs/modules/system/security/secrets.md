@@ -1,7 +1,22 @@
-## Пример использования
-```
-{ pkgs, inputs, ... }: {
-  imports = [ ./services/my-service.nix ];
-}
-```
-В `configuration.nix` включения модуля секретов не требуется – он автоматически подгружается из `hardware-configuration.nix`.
+# Модуль `system/security/secrets`
+
+**Путь:** `modules/system/security/secrets.nix`
+**Назначение:** Базовый модуль управления секретами через sops-nix.
+**Используется хостами:** все NixOS-хосты
+
+## Описание
+
+Подключает sops-nix как NixOS-модуль. Автоматически подгружается из `default.nix`.
+
+## Настройки
+
+Модуль является обёрткой над sops-nix. Основные настройки задаются в `security/sops.nix`.
+
+## Параметры
+
+Модуль не экспонирует пользовательских опций.
+
+## См. также
+
+- [security/sops](sops.md) — основные настройки SOPS
+- [Secrets Guide](../../secrets-guide.md) — как добавлять и использовать секреты

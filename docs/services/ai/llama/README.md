@@ -1,17 +1,26 @@
-# llama (LLM Server)
+# LLaMA (LLM Server)
 
-The **llama** service provides a language‑model API using `llama-cpp`. The Nix module is defined in `modules/system/services/ai/llama.nix`.
+**Модуль:** `modules/system/services/ai/llama.nix`
+**Назначение:** Сервер языковых моделей на базе llama-cpp с API-ключом.
 
-## Key Options
-| Option | Default | Description |
-|---|---|---|
-| `config.sops.secrets.llama-api-key` | required | API key for the model service. Store it encrypted in `secrets/`. |
-| `pkgs.llama-cpp.cudaSupport` | `true` | Enable CUDA acceleration when available. |
+## Быстрый старт
 
-## Usage example
 ```nix
-{ pkgs, config, ... }:
-{
-  imports = [ ./modules/system/services/ai/llama.nix ];
-}
+imports = [ ./modules/system/services/ai/llama.nix ];
 ```
+
+## Опции
+
+| Опция | Тип | По умолчанию | Описание |
+|-------|-----|-------------|-----------|
+| `config.sops.secrets.llama-api-key` | secret | — | API-ключ (обязательный) |
+
+## Зависимости
+
+- Secret: `llama-api-key` (создать в `secrets/llama-api-key.yaml`)
+- Пакет: `pkgs.llama-cpp` с `cudaSupport = true`
+
+## См. также
+
+- [details.md](details.md) — подробная спецификация
+- [Secrets Guide](../../secrets-guide.md) — как добавлять секреты

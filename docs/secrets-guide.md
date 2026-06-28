@@ -1,26 +1,86 @@
-# Secrets Management Guide
+# Управление секретами
 
-## Overview
-Secrets are stored in `secrets/*.yaml` files and encrypted with **SOPS**. The repository keeps only the encrypted payload – plain text is never committed.
+## Обзор
 
-## Adding a new secret
-1. Create or edit a YAML file in `secrets/` (e.g., `secrets/new.yaml`).
-2. Encrypt the file:
-   ```bash
-   sops --encrypt secrets/new.yaml > secrets/new.yaml.sops
-   rm secrets/new.yaml
-   ```
-3. Reference it inside a module:
-   ```nix
-   config.sops.secrets.mySecret.value
-   ```
-4. Run `nix flake check .` to verify the key exists.
+Секреты хранятся в `secrets/*.yaml` в зашифрованном виде (SOPS + Age). Репозиторий **никогда** не содержит открытые ключи.
 
-## Decrypting locally
+## Добавление нового секрета
+
+### 1. Создать YAML-файл
+
 ```bash
-sops -d secrets/mySecret.yaml.sops > secrets/secret.txt
+# Создать временный файл
+cat > secrets/new-secret.yaml << EOF
+api-key: "your-secret-value"
+db-password: "another-secret"
+EOF
 ```
-Keep decrypted files out of the repo and consider adding them to `.gitignore`.
 
-## Key management
-SOPS uses GPG or AWS KMS. Configure the chosen backend in `secrets/.sops.yaml`. Refer to the module that calls `services/sops.nix` for concrete examples.
+### 2. Зашифровать
+
+```bash
+sops -e -i secrets/new-secret.yaml
+```
+
+### 3. Проверить `.sops.yaml`
+
+Убедиться, что `secrets/.sops.yaml` содержит нужный Age-ключ:
+
+```yaml
+keys:
+  - &nixos age1d73872whjx90xl6y5ez04dfk7uvkf4ztz07skcd5qffzhppu9eqs07xnvn
+creation_rules:
+  - path_regex: .*\.yaml$
+    key_groups:
+      - age:
+          - *nixos
+```
+
+### 4. Использовать в модуле
+
+```nix
+# В модуле
+{ config, ... }: {
+  services.my-service = {
+    api-key = config.sops.secrets.my-secret.path;
+  };
+}
+```
+
+## Расшифровка локально
+
+```bash
+# Просмотр зашифрованного файла
+sops -d secrets/common.yaml
+
+# Расшифровать в файл (НЕ коммитить!)
+sops -d secrets/my-secret.yaml > /tmp/secret.txt
+```
+
+## Настройка Age-ключа
+
+### Генерация нового ключа
+
+```bash
+# Генерация Age-ключа
+age-keygen -o ~/.config/sops/age/keys.txt
+```
+
+### Импорт существующего ключа
+
+```bash
+# Ключ уже должен быть по пути, указанному в sops.nix:
+# sops.age.keyFile = "/home/indlns/.config/sops/age/keys.txt";
+```
+
+## Проверка
+
+```bash
+# Проверить, что все секреты доступны
+nix flake check .
+```
+
+## Связанные документы
+
+- [security/sops](modules/system/security/sops.md) — настройки SOPS
+- [Troubleshooting](troubleshooting.md) — ошибки SOPS
