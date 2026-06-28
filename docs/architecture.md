@@ -16,7 +16,7 @@ This repository contains a **NixOS Flake** that manages two machine‑level conf
 │   │  ├─ virtualization/
 │   │  ├─ services/
 │   │  └─ security/...
-│   └─ user/                   # User‑level shared fragments (scripting, shell)
+│   └─ user/                    # User‑level shared fragments – split into common and platform specific branches
 ├─ hosts/                        # Host‑specific configuration
 │   ├─ ms-02/
 │   │  ├─ configuration.nix
@@ -80,3 +80,10 @@ All user‑specific fragment files (e.g., `home/indlns.nix`, or anything under `
 ---
 
 This document is purposely concise; it focuses on points that an automated agent would otherwise have trouble discovering: where files live, how modules are composed, and what commands are needed to add new hosts or modules. If anything above seems confusing or misses a piece of the workflow, flag it for clarification.
+
+## User‑module architecture
+- `modules/user/common/` – common imports (git, lf). 
+- `modules/user/platform/macos/` – macOS‑specific imports. 
+- `modules/user/platform/linux/` – Linux‑specific imports. 
+
+Old files `default.nix` and `bundle.nix` have been removed in favour of this layout.
