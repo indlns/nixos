@@ -1,9 +1,20 @@
-# Troubleshooting
+# Общие проблемы и исправления
+Все основные типы ошибок, которые встречаются в процессе развертывания и работы, собраны здесь с однократными командами для диагностики и решения.
 
-| Symptom | Quick Fix |
-|---|---|
-| `nixos-rebuild` fails with missing dependency | Run `nix flake check .` to identify broken imports.
-| SOPS key not found | Ensure the GPG key is imported: `gpg --import <key.asc>` and registered in `.sops.yaml`.
-| CI job timed out | Increase timeout in workflow or split tasks into smaller shards.
+## Список проблем
+| Симптом | Описание | Быстрый исправитель | Комментарий |
+|--------|-----------|---------------------|-------------|
+| `nixos-rebuild` не строит из‑за недостающих импорта | Не найден модуль или атрибут. | `nix flake check .` + проверка путей в `flake.nix`. | Порой дело в относительном пути.
+| Секреты SOPS отсутствуют | Ошибки вида ``AttributeError: 'Sops' object has no attribute ...`` | Проверить, что ключи есть в `secrets/common.yaml` и загружены через `sops`. | Может потребоваться добавить файл `secrets/XXX.sops.yaml`.
+| Невозможно установить Nix‑пакет из-за устаревших ссылок | `attribute: 'something' was dropped`: откат версии пакета. | Использовать pin в `flake.lock`, принудительно обновить (`nix flake lock --update-input nixpkgs`). |
 
-For detailed guidance, see the [Architecture](../architecture.md) and individual module READMEs.
+## Типичные команды отладки
+```bash
+# Проверка всех ключей SOPS
+sops -d secrets/common.yaml
+
+# Перенастройка lock'ов и зависимостей
+nix flake update
+nix flake check .
+```
+

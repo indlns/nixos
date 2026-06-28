@@ -79,7 +79,21 @@ All user‑specific fragment files (e.g., `home/indlns.nix`, or anything under `
 
 ---
 
-This document is purposely concise; it focuses on points that an automated agent would otherwise have trouble discovering: where files live, how modules are composed, and what commands are needed to add new hosts or modules. If anything above seems confusing or misses a piece of the workflow, flag it for clarification.
+This document is intentionally concise; it focuses on key concepts that automate agents need to discover: file locations, module composition, and command examples for adding hosts/modules. If elements here are unclear, let me know. 
+
+## Mermaid Diagram
+```mermaid
+graph TD;
+  Flake -->|imports| Modules;
+  Modules -->|contains| SystemModules[System modules];
+  Modules -->|contains| UserModules[User modules];
+  Flake -->|defines| Hosts[Hosts];
+  Hosts -->|configuration*| HostConfigs;
+  HostConfigs -->|import| SystemModules;
+  HostConfigs -->|import| UserModules;
+  Services -->|enabled via| Modules;
+```
+
 
 ## User‑module architecture
 - `modules/user/common/` – common imports (git, lf). 

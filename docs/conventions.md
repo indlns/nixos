@@ -10,5 +10,8 @@
 - Use PascalCase for module names like `Networking.nix`? Actually repository uses snake_case (e.g., `networking.nix`). Follow that.
 - Paths are *relative* to the root; avoid absolute references in modules.
 
-## Documentation
-Documentation lives under `docs/`. Keep each file short and link cross‑references using relative paths.
+## Документация
+- Сохраняется в каталоге `docs/`.
+- Каждый файл должен быть кратким, но содержать таблицы и ссылки на другие разделы. 
+- Используйте относительные пути (`../hosts/macbook-pro.md`).
+- Для Markdown‑тегов поддерживается «Mermaid» и «PlantUML» (проверка линта через `markdownlint`).
