@@ -5,6 +5,10 @@
 # Environment files
 # -----------------------------
 
+**/opencode.json
+
 # -----------------------------
 # Files
 # -----------------------------
+**/README_UPDATED.md
+**/AGENTS-old.md
